@@ -1,9 +1,8 @@
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> <!--Encode toute la page en Utf-8 pour les accents -->
 </head>
 Validitée: <label id="seconds"></label> Secondes
-<br />
-
+<br /><br />
 
 <script type="text/javascript">
     var message = Math.round(new Date().getTime() / 1000.0);
@@ -37,7 +36,7 @@ $TO = 0; //Représente le temps a partir duquel on commence a compter, de base 0
 $X = 30; // Représente les intervalles de temps ou on recréer un mot de passe, de base toutes les 30 secondes
 $key = "***REMOVED***"; // clé 32 bits générée par google
 
-echo "<br />Clé secrète: <b>".$key.'</b><br />';
+echo "Clé secrète: <b>".$key.'</b><br />';
 
 $keyHex=convBase(strtoupper($key), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567', '0123456789ABCDEF'); // On convertis la base 32 en hexadécimal et on oublie pas de mettre strtoupper histoir que la clé match avec les caractère
 echo "Clé secrète en HEXA: <b>".$keyHex.'</b><br />';
