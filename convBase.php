@@ -2,6 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: guigur
+ * Convertisseur de base pris sur internet
  * Date: 23/06/15
  * Time: 17:47
  */
