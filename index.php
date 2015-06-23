@@ -29,17 +29,18 @@ Validitée: <label id="seconds"></label> Secondes
  * Time: 09:50
  */
 
+include_once('convBase.php');
 /*
 ** CONFIG
 */
 $TO = 0; //Représente le temps a partir duquel on commence a compter, de base 0 (le temps unix)
 $X = 30; // Représente les intervalles de temps ou on recréer un mot de passe, de base toutes les 30 secondes
-$key = "d6367f06cd6ff8f3d184812036bbc25b4732b07f"; //"***REMOVED***"; // clé 32 bits générée par google
+$key = "***REMOVED***"; // clé 32 bits générée par google
 
-echo '<br />';
-echo "Clé secrète en HEXA: <b>".$key.'</b><br />';
-/*$key = bin2hex($key);
-echo "Clé secrète en HEXA : <b>".$key.'</b><br />'; */
+echo "<br />Clé secrète: <b>".$key.'</b><br />';
+
+$keyHex=convBase(strtoupper($key), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567', '0123456789ABCDEF'); // On convertis la base 32 en hexadécimal et on oublie pas de mettre strtoupper histoir que la clé match avec les caractère
+echo "Clé secrète en HEXA: <b>".$keyHex.'</b><br />';
 
 $message = floor((time('now') - $TO) / $X);             //Création de l'époque Unix
 echo "Epoque Unix : <b><span id='epoque'>".$message."</span></b><br />";
@@ -48,7 +49,7 @@ $message = dechex($message);                            //On convertis L'époque
 $message = str_pad($message, 16, '0', STR_PAD_LEFT);    //On met des zeros devant histoire de le passer sur 16 bits
 echo "Epoque Unix en HEXA : <b>".$message."</b><br />";
 
-$hmac = hash_hmac("sha1",  pack("H*", $message), pack("H*", $key)); //On hache le tout en mettant bien les chaines en hexa avec le bit de poids fort en premier
+$hmac = hash_hmac("sha1",  pack("H*", $message), pack("H*", $keyHex)); //On hache le tout en mettant bien les chaines en hexa avec le bit de poids fort en premier
 echo "HMAC en HEXA : <b>".$hmac."</b><br />";
 
 $offset = hexdec(substr($hmac, strlen($hmac) - 1, strlen($hmac))); //On récupère la dernière lettre de la chaine que l'on viens de hacher et on la convertie en décimal et on multiplie par 2
