@@ -34,7 +34,7 @@ include_once('convBase.php');
 */
 $TO = 0; //Représente le temps a partir duquel on commence a compter, de base 0 (le temps unix)
 $X = 30; // Représente les intervalles de temps ou on recréer un mot de passe, de base toutes les 30 secondes
-$key = "***REMOVED***"; // clé 32 bits générée par google
+$key = "YOUR KEY HERE"; // clé 32 bits générée par google
 
 echo "Clé secrète: <b>".$key.'</b><br />';
 
